@@ -1,7 +1,6 @@
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { GoogleAuthProvider, signInWithPopup, getIdToken } from "firebase/auth";
 import { auth } from "../../Firebase/firebase-config";
-import { instance } from "../../libs/api";
 import { useNavigate } from "react-router-dom"; 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -54,45 +53,30 @@ const Login2 = () => {
       localStorage.setItem('authToken', token);
 
       // 서버에 토큰을 보내 회원가입 여부 확인
-      const response = await axios.get("/api/v1/user/discrimination", {
+      const response = await axios.get("https://dofarming.duckdns.org/api/v1/user/discrimination", {
         headers: {
           Authorization: `Bearer ${token}`,
           'Cache-Control': 'no-cache'
         }
       });
 
-      if (response.status === 200) {
-        // 회원 가입 여부에 상관없이 홈으로 리디렉트
-        navigate('/home');
-
-        // 사용자 정보 전체 조회
-        const userInfoResponse = await axios.get("/api/v1/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Cache-Control': 'no-cache'
-          }
-        });
-
-        // 닉네임에 특수 기호 "-"가 포함되어 있는지 확인하여 조건부 리디렉션
-        if (userInfoResponse.data.nickname.includes("-")) {
-          navigate('/login3'); // "-" 기호가 있을 경우 login3으로 리디렉트
-        }
-      } else {
+      if (response.data === "처음 회원 가입한 사용자") {
         navigate('/login3');
+      } 
+      else if (response.data === "이미 회원 가입된 사용자") {
+        navigate('/home');
       }
-    } catch (error) {
-      console.error("An error occurred during Google login:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
+    } catch (error) { 
+      console.error(error);
+    } 
+  }
   return (
     <Login2Container>
       <TextContainer>
         <p>
-          <strong>Body</strong> and <strong>Mind</strong><br />
-          The first step to take<br />care of your health!
+          <strong>몸</strong> 과 <strong>마음</strong><br />
+          건강하게 챙기는 첫 단계 !
         </p>
       </TextContainer>
       <StyledGoogleLoginButton onClick={handleGoogleLogin} disabled={loading}>
