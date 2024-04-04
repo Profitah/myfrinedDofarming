@@ -13,7 +13,7 @@ https://github.com/Profitah/myfrinedDofarming/assets/101340482/a2c09005-f805-47b
 
 |                                                         | 
 |---------------------------------------------------------| 
-| [<img src="https://github.com/chooh1010.png?size=100" width="100px;"> <br> <sub align="center">조용현</sub>](https://github.com/chooh1010) |
+| <div align="center">[<img src="https://github.com/chooh1010.png?size=100" width="100px;"><br><sub>조용현</sub>](https://github.com/chooh1010)</div> |
 
 </div>
 
