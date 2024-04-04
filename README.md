@@ -9,7 +9,7 @@ https://github.com/Profitah/myfrinedDofarming/assets/101340482/a2c09005-f805-47b
 
 <div align="center">
   
-# 로그인 리디렉트 기여도 100% 
+# 기여도 100% 
 
 |                                                         | 
 |---------------------------------------------------------| 
